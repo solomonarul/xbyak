@@ -10,3 +10,9 @@ target_include_directories(
 	${PROJECT_NAME} INTERFACE
 	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
+
+# TODO: figure out why it crashes with any option greater than O1, this forces anything using it to compile with O1
+# It crashes while freeing the code when using AutoGrow.
+target_compile_options(${PROJECT_NAME} INTERFACE
+    $<$<CONFIG:Release>:-O1>
+)
